@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>290</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Class: Tweets
+--
+tweet_id* int (PRIMARY KEY)
+author^ int (FOREIGN KEY)
+message varchar(140)
+date datetime
+num_favorites int
+num_retweets int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>670</x>
+      <y>570</y>
+      <w>330</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Class: Following
+--
+follower_id*^ int (PRIMARY KEY, FOREIGN KEY)
+following_id*^ int (PRIMARY KEY, FOREIGN KEY)
+date datetime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>290</y>
+      <w>310</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Class: Favorites
+--
+tweet_id*^ int (PRIMARY KEY, FOREIGN KEY)
+user_id*^ int (PRIMARY KEY, FOREIGN KEY)
+date datetime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>670</x>
+      <y>380</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Class: Users
+--
+id* int (PRIMARY KEY)
+name varchar(100)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>300</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;310.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>330</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30.0;10.0;20.0;10.0;20.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>400</y>
+      <w>40</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>20.0;200.0;10.0;200.0;10.0;30.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>330</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;30.0;10.0;30.0;80.0;80.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>90</y>
+      <w>320</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Class: Retweets
+--
+tweet_id*^ int (PRIMARY KEY, FOREIGN KEY)
+user_id*^ int (PRIMARY KEY, FOREIGN KEY)
+date datetime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>110</y>
+      <w>280</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>260.0;10.0;10.0;10.0;10.0;210.0;30.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>130</y>
+      <w>100</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30.0;10.0;10.0;10.0;10.0;100.0;80.0;280.0</additional_attributes>
+  </element>
+</diagram>
