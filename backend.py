@@ -42,29 +42,29 @@ class Tweets(BaseModel):
     class Meta:
         order_by = ('tweet_id',)
 
-class Retweets(BaseModel):
-    tweet_id = ForeignKeyField(Tweets, related_name='retweets-tweets')
-    user_id = ForeignKeyField(Users, related_name='retweets-users')
-    date = DateTimeField()
+# class Retweets(BaseModel):
+#     tweet_id = ForeignKeyField(Tweets, related_name='retweets-tweets')
+#     user_id = ForeignKeyField(Users, related_name='retweets-users')
+#     date = DateTimeField()
 
-    class Meta:
-        primary_key = CompositeKey('tweet_id', 'user_id')
+#     class Meta:
+#         primary_key = CompositeKey('tweet_id', 'user_id')
 
-class Favorites(BaseModel):
-    tweet_id = ForeignKeyField(Tweets, related_name='favorites-tweets')
-    user_id = ForeignKeyField(Users, related_name='favorited-users')
-    date = DateTimeField()
+# class Favorites(BaseModel):
+#     tweet_id = ForeignKeyField(Tweets, related_name='favorites-tweets')
+#     user_id = ForeignKeyField(Users, related_name='favorited-users')
+#     date = DateTimeField()
 
-    class Meta:
-        primary_key = CompositeKey('tweet_id', 'user_id')
+#     class Meta:
+#         primary_key = CompositeKey('tweet_id', 'user_id')
 
-class Following(BaseModel):
-    following_id = ForeignKeyField(Users, related_name='following-users')
-    follower_id = ForeignKeyField(Users, related_name='follower-users')
-    date = DateTimeField()
+# class Following(BaseModel):
+#     following_id = ForeignKeyField(Users, related_name='following-users')
+#     follower_id = ForeignKeyField(Users, related_name='follower-users')
+#     date = DateTimeField()
 
-    class Meta:
-        primary_key = CompositeKey('following_id', 'follower_id')
+#     class Meta:
+#         primary_key = CompositeKey('following_id', 'follower_id')
 
 
 
