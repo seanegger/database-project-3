@@ -2,7 +2,7 @@ from flask import Flask
 from peewee import *
 # create a peewee database instance -- our models will use this database to 
 # persist information
-DATABASE_NAME = ''
+DATABASE_NAME = 'twitter'
 database = MySQLDatabase(DATABASE_NAME)
 app = Flask(__name__)
 
@@ -70,17 +70,12 @@ class Following(BaseModel):
 
 
 def tweet(user_id, message, date):
-    try:
-        with database.transaction():
-            tweet = Tweets.create(
-                author = user_id,
-                message = message,
-                date = datetime.datetime.now(),
-                num_favorites = 0,
-                num_retweets = 0
-                )
-    except IntegrityError as e:
-        print('ERROR CREATING TWEET: ', e)
+    new_tweet = Tweet(
+        author = user_id, 
+        message = date,
+        num_retweets = 0,
+        num_favorites = 0 )
+    new_tweet.save()
 
 def retweet(tweet_id, user_id, date):
     pass
