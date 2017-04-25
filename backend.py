@@ -3,7 +3,7 @@ from peewee import *
 from playhouse.db_url import connect
 # create a peewee database instance -- our models will use this database to 
 # persist information
-DATABASE = 'mysql://aaronmillet@aaronmillet.mysql.pythonanywhere-services.com/twitter'
+DATABASE = 'mysql://aaronmillet@aaronmillet:databases.mysql.pythonanywhere-services.com/twitter'
 database = connect(DATABASE)
 app = Flask(__name__)
 
@@ -36,7 +36,7 @@ class Tweets(BaseModel):
     tweet_id = IntegerField(unique=True, primary_key=True)
     author = ForeignKeyField(Users, related_name='tweets-users')
     message = CharField()
-    date = DateTimeField()
+    date = DateTimeField(default=datetime.datetime.now)
     num_favorites = IntegerField()
     num_retweets = IntegerField()
 
@@ -46,7 +46,7 @@ class Tweets(BaseModel):
 # class Retweets(BaseModel):
 #     tweet_id = ForeignKeyField(Tweets, related_name='retweets-tweets')
 #     user_id = ForeignKeyField(Users, related_name='retweets-users')
-#     date = DateTimeField()
+#     date = DateTimeField(default=datetime.datetime.now)
 
 #     class Meta:
 #         primary_key = CompositeKey('tweet_id', 'user_id')
@@ -54,7 +54,7 @@ class Tweets(BaseModel):
 # class Favorites(BaseModel):
 #     tweet_id = ForeignKeyField(Tweets, related_name='favorites-tweets')
 #     user_id = ForeignKeyField(Users, related_name='favorited-users')
-#     date = DateTimeField()
+#     date = DateTimeField(default=datetime.datetime.now)
 
 #     class Meta:
 #         primary_key = CompositeKey('tweet_id', 'user_id')
@@ -62,7 +62,7 @@ class Tweets(BaseModel):
 # class Following(BaseModel):
 #     following_id = ForeignKeyField(Users, related_name='following-users')
 #     follower_id = ForeignKeyField(Users, related_name='follower-users')
-#     date = DateTimeField()
+#     date = DateTimeField(default=datetime.datetime.now)
 
 #     class Meta:
 #         primary_key = CompositeKey('following_id', 'follower_id')
@@ -70,21 +70,21 @@ class Tweets(BaseModel):
 
 
 
-def tweet(user_id, message, date):
+def tweet(user_id, message):
     new_tweet = Tweets(
         author = user_id, 
-        message = date,
+        message = message,
         num_retweets = 0,
         num_favorites = 0 )
     new_tweet.save()
 
-def retweet(tweet_id, user_id, date):
+def retweet(tweet_id, user_id):
     pass
 
 def delete_tweet(tweet_id):
     pass
 
-def favorite_tweet(tweet_id, user_id, date):
+def favorite_tweet(tweet_id, user_id):
     pass
 
 def unfavorite_tweet(tweet_id, user_id):
