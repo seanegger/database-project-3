@@ -24,9 +24,16 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+class Users(BaseModel):
+    id = IntegerField(unique=True, primary_key=True)
+    name = CharField()
+
+    class Meta:
+        order_by = ('id',)
+
 class Tweets(BaseModel):
     tweet_id = IntegerField(unique=True, primary_key=True)
-    author = ForeignKeyField(Users, related_name='id')
+    author = ForeignKeyField(Users, related_name='tweets-users')
     message = CharField()
     date = DateTimeField()
     num_favorites = IntegerField()
@@ -35,32 +42,25 @@ class Tweets(BaseModel):
     class Meta:
         order_by = ('tweet_id',)
 
-class Users(BaseModel):
-    id = IntegerField(unique=True, primary_key=True)
-    name = CharField()
-
-    class Meta:
-        order_by = ('id',)
-
 class Retweets(BaseModel):
-    tweet_id = ForeignKeyField(Tweets, related_name='tweet_id')
-    user_id = ForeignKeyField(Users, related_name='id')
+    tweet_id = ForeignKeyField(Tweets, related_name='retweets-tweets')
+    user_id = ForeignKeyField(Users, related_name='retweets-users')
     date = DateTimeField()
 
     class Meta:
         primary_key = CompositeKey('tweet_id', 'user_id')
 
 class Favorites(BaseModel):
-    tweet_id = ForeignKeyField(Tweets, related_name='tweet_id')
-    user_id = ForeignKeyField(Users, related_name='id')
+    tweet_id = ForeignKeyField(Tweets, related_name='favorites-tweets')
+    user_id = ForeignKeyField(Users, related_name='favorited-users')
     date = DateTimeField()
 
     class Meta:
         primary_key = CompositeKey('tweet_id', 'user_id')
 
 class Following(BaseModel):
-    following_id = ForeignKeyField(Users, related_name='id')
-    follower_id = ForeignKeyField(Users, related_name='id')
+    following_id = ForeignKeyField(Users, related_name='following-users')
+    follower_id = ForeignKeyField(Users, related_name='follower-users')
     date = DateTimeField()
 
     class Meta:
