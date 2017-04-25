@@ -1,9 +1,10 @@
 from flask import Flask
 from peewee import *
+from playhouse.db_url import connect
 # create a peewee database instance -- our models will use this database to 
 # persist information
-DATABASE_NAME = 'twitter'
-database = MySQLDatabase(DATABASE_NAME)
+DATABASE = 'mysql://aaronmillet@aaronmillet.mysql.pythonanywhere-services.com/twitter'
+database = connect(DATABASE)
 app = Flask(__name__)
 
 # This hook ensures that a connection is opened to handle any queries
