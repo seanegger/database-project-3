@@ -70,7 +70,7 @@ class Tweets(BaseModel):
 
 
 def tweet(user_id, message, date):
-    new_tweet = Tweet(
+    new_tweet = Tweets(
         author = user_id, 
         message = date,
         num_retweets = 0,
