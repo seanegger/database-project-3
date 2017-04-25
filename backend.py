@@ -4,7 +4,7 @@ from playhouse.db_url import connect
 import datetime
 # create a peewee database instance -- our models will use this database to 
 # persist information
-DATABASE = 'mysql://aaronmillet:databases@aaronmillet.mysql.pythonanywhere-services.com/twitter'
+DATABASE = 'mysql://aaronmillet:databases@aaronmillet.mysql.pythonanywhere-services.com$twitter'
 database = connect(DATABASE)
 app = Flask(__name__)
 
@@ -114,5 +114,4 @@ def list_followed(user_id):
 
 def get_num_retweets(tweet_id):
     pass
-
-
+    
