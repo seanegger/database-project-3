@@ -3,7 +3,7 @@ from peewee import *
 from playhouse.db_url import connect
 import datetime
 
-database = MySQLDatabase(
+database_connection = MySQLDatabase(
     'aaronmillet$twitter',
     host='aaronmillet.mysql.pythonanywhere-services.com',
     port=3306,
@@ -28,7 +28,7 @@ def _db_close(exc):
 
 class BaseModel(Model):
     class Meta:
-        database = database
+        database = database_connection
 
 class Users(BaseModel):
     id = IntegerField(unique=True, primary_key=True)
@@ -76,7 +76,7 @@ class Tweets(BaseModel):
 
 
 def tweet(user_id, message):
-    new_tweet = Tweets(
+    new_tweet = Tweets.create(
         author = user_id, 
         message = message,
         num_retweets = 0,
