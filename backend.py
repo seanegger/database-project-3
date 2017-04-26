@@ -2,15 +2,21 @@ from flask import Flask
 from peewee import *
 from playhouse.db_url import connect
 import datetime
-import _mysql
+# import _mysql
 # create a peewee database instance -- our models will use this database to 
 # persist information
-sqldb_connection =_mysql.connect(
+# sqldb_connection =_mysql.connect(
+#     host='aaronmillet.mysql.pythonanywhere-services.com',
+#     user='aaronmillet',
+#     passwd='databases',
+#     db='aaronmillet$twitter')
+# database = MySQLDatabase(sqldb_connection)
+database = MySQLDatabase(
+    'aaronmillet$twitter',
     host='aaronmillet.mysql.pythonanywhere-services.com',
+    port=3306,
     user='aaronmillet',
-    passwd='databases',
-    db='aaronmillet$twitter')
-database = MySQLDatabase(sqldb_connection)
+    passwd='databases')
 # DATABASE = 'mysql://aaronmillet:databases@aaronmillet.mysql.pythonanywhere-services.com/twitter'
 # database = connect(DATABASE)
 app = Flask(__name__)
