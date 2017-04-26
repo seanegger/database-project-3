@@ -5,11 +5,12 @@ import datetime
 import _mysql
 # create a peewee database instance -- our models will use this database to 
 # persist information
-database=_mysql.connect(
+sqldb_connection =_mysql.connect(
     host='aaronmillet.mysql.pythonanywhere-services.com',
     user='aaronmillet',
     passwd='databases',
     db='aaronmillet$twitter')
+database = MySQLDatabase(sqldb_connection)
 # DATABASE = 'mysql://aaronmillet:databases@aaronmillet.mysql.pythonanywhere-services.com/twitter'
 # database = connect(DATABASE)
 app = Flask(__name__)
